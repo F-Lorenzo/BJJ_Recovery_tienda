@@ -10,21 +10,87 @@
 
   --font-display: var(--font-league-spartan);
   --font-body: var(--font-open-sans);
+
+  /* Shadow scale — tinted toward brand hue */
+  --shadow-sm: 0 1px 3px 0 oklch(28% 0.04 195 / 0.08);
+  --shadow-md: 0 4px 12px 0 oklch(28% 0.04 195 / 0.10);
+  --shadow-lg: 0 8px 24px 0 oklch(28% 0.04 195 / 0.12);
+  --shadow-product: 0 2px 8px oklch(28% 0.04 195 / 0.08), 0 0 0 1px oklch(57% 0.03 185 / 0.08);
+  --shadow-product-hover: 0 12px 32px oklch(28% 0.04 195 / 0.14), 0 0 0 1px oklch(28% 0.04 195 / 0.10);
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-sand);
     color: var(--color-ink);
     font-family: var(--font-open-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-league-spartan), sans-serif;
+    text-wrap: balance;
   }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus-visible ring — accessible, unobtrusive */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Skip to content — keyboard accessibility */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--color-brand);
+    color: white;
+    font-family: var(--font-open-sans), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+}
+
+@layer utilities {
+  /* Grain overlay — breaks digital flatness */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    mix-blend-mode: multiply;
+    opacity: 0.4;
+    z-index: 1;
+  }
+
+  /* Tinted shadow utilities */
+  .shadow-brand-sm { box-shadow: var(--shadow-sm); }
+  .shadow-brand-md { box-shadow: var(--shadow-md); }
+  .shadow-brand-lg { box-shadow: var(--shadow-lg); }
+  .shadow-product { box-shadow: var(--shadow-product); }
+  .shadow-product-hover { box-shadow: var(--shadow-product-hover); }
 }

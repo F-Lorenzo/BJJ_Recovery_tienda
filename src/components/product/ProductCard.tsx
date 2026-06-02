@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/productos/${product.slug}`}
-      className="group block bg-white rounded-2xl overflow-hidden transition-shadow duration-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2"
+      className="group block bg-white rounded-2xl overflow-hidden shadow-product transition-all duration-300 hover:shadow-product-hover hover:-translate-y-0.5"
     >
       {/* Image */}
       <div className="relative aspect-square bg-sand overflow-hidden">
@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.image.altText || product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-sage/30">
@@ -64,11 +64,19 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           {isOnSale && (
             <Badge variant="alert">
-              -{Math.round((1 - parseFloat(product.salePrice!.replace(/[^0-9.]/g, "")) / parseFloat(product.regularPrice!.replace(/[^0-9.]/g, ""))) * 100)}%
+              -{Math.round(
+                (1 -
+                  parseFloat(product.salePrice!.replace(/[^0-9.]/g, "")) /
+                    parseFloat(product.regularPrice!.replace(/[^0-9.]/g, ""))) *
+                  100
+              )}%
             </Badge>
           )}
           {tag && !isOnSale && <Badge>{tag}</Badge>}
         </div>
+
+        {/* Quick-view hint on hover */}
+        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* Info */}
@@ -88,7 +96,12 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        <p className="font-body text-muted text-xs mt-2">Envío incluido</p>
+        <div className="flex items-center gap-1 mt-2">
+          <svg className="w-3 h-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+          </svg>
+          <p className="font-body text-muted text-xs">Envío incluido</p>
+        </div>
       </div>
     </Link>
   );

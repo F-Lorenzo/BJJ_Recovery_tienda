@@ -46,7 +46,7 @@ export default function RootLayout({
         <ApolloProvider>
           <AnnouncementBar />
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
           <WhatsAppButton />
         </ApolloProvider>
