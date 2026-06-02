@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #16474b;
+  --color-sage: #728b85;
+  --color-sand: #e4dccf;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-alert: #c4703f;
+
+  --font-display: var(--font-league-spartan);
+  --font-body: var(--font-open-sans);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-open-sans), sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-league-spartan), sans-serif;
+  }
+}
