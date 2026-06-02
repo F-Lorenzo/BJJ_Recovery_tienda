@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/Button";
@@ -18,26 +19,11 @@ export function HeroCinematic() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 });
       tl.from(headRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 1.1,
-        ease: "power4.out",
+        y: 60, opacity: 0, duration: 1.1, ease: "power4.out",
       })
-        .from(
-          subRef.current,
-          { y: 32, opacity: 0, duration: 0.9, ease: "power3.out" },
-          "-=0.55"
-        )
-        .from(
-          ctaRef.current,
-          { y: 20, opacity: 0, duration: 0.7, ease: "power3.out" },
-          "-=0.45"
-        )
-        .from(
-          scrollRef.current,
-          { opacity: 0, duration: 0.6, ease: "power2.out" },
-          "-=0.2"
-        );
+        .from(subRef.current, { y: 32, opacity: 0, duration: 0.9, ease: "power3.out" }, "-=0.55")
+        .from(ctaRef.current, { y: 20, opacity: 0, duration: 0.7, ease: "power3.out" }, "-=0.45")
+        .from(scrollRef.current, { opacity: 0, duration: 0.6, ease: "power2.out" }, "-=0.2");
     });
     return () => ctx.revert();
   }, [reduce]);
@@ -47,14 +33,28 @@ export function HeroCinematic() {
       className="relative overflow-hidden bg-brand grain"
       style={{ minHeight: "100dvh" }}
     >
-      {/* Video background */}
+      {/* Background image — full cover, massage / muscle recovery */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://loremflickr.com/1920/1080/massage,muscle,recovery,therapy?lock=100"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ opacity: 0.45 }}
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Video overlay — plays on top of static image when available */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        poster="https://loremflickr.com/1920/1080/massage,recovery,sports?lock=1"
-        className="absolute inset-0 w-full h-full object-cover opacity-25"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ opacity: 0.45 }}
         aria-hidden="true"
       >
         <source
@@ -63,20 +63,12 @@ export function HeroCinematic() {
         />
       </video>
 
-      {/* Gradient layers */}
+      {/* Gradient overlay — left-heavy so text stays readable */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(135deg, oklch(28% 0.055 195 / 0.85) 0%, oklch(28% 0.055 195 / 0.5) 60%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 80% 50%, transparent 40%, oklch(28% 0.055 195 / 0.7) 100%)",
+            "linear-gradient(100deg, oklch(28% 0.055 195 / 0.92) 0%, oklch(28% 0.055 195 / 0.75) 40%, oklch(28% 0.055 195 / 0.35) 100%)",
         }}
         aria-hidden="true"
       />
@@ -111,7 +103,7 @@ export function HeroCinematic() {
 
         <p
           ref={subRef}
-          className="font-body text-white/60 mt-8 mb-10"
+          className="font-body text-white/65 mt-8 mb-10"
           style={{
             fontSize: "clamp(1rem, 1.2vw + 0.5rem, 1.2rem)",
             maxWidth: "480px",
@@ -124,10 +116,7 @@ export function HeroCinematic() {
 
         <div ref={ctaRef} className="flex flex-wrap gap-4">
           <Link href="/productos">
-            <Button
-              size="lg"
-              className="bg-sand! text-brand! hover:bg-white! font-extrabold tracking-tight"
-            >
+            <Button size="lg" className="bg-sand! text-brand! hover:bg-white! font-extrabold tracking-tight">
               Explorar productos
             </Button>
           </Link>
@@ -136,11 +125,7 @@ export function HeroCinematic() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-white/25! text-white! hover:bg-white/8! hover:border-white/45!"
-            >
+            <Button variant="outline" size="lg" className="border-white/30! text-white! hover:bg-white/10! hover:border-white/55!">
               Consultar por WhatsApp
             </Button>
           </a>
@@ -156,10 +141,7 @@ export function HeroCinematic() {
         <div className="w-px h-12 bg-white/20 relative overflow-hidden">
           <div
             className="absolute top-0 left-0 w-full bg-sand/60"
-            style={{
-              height: "50%",
-              animation: "scroll-line 1.8s ease-in-out infinite",
-            }}
+            style={{ height: "50%", animation: "scroll-line 1.8s ease-in-out infinite" }}
           />
         </div>
       </div>

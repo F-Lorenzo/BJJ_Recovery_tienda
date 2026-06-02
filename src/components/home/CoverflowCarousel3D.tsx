@@ -12,16 +12,19 @@ type ProductItem = Pick<
   "id" | "slug" | "name" | "image" | "price" | "regularPrice" | "shortDescription"
 >;
 
-// LoremFlickr: keyword-matched real photos for each product type
+/**
+ * Fallback images for 3D carousel, ordered by store products:
+ * 0 nasal strip  1 mat soap  2 finger tape  3 crema cbd
+ */
 const PLACEHOLDER_SEEDS = [
-  "https://loremflickr.com/240/340/massage,gun,percussion,therapy?lock=20",
-  "https://loremflickr.com/240/340/neck,massage,physiotherapy?lock=21",
-  "https://loremflickr.com/240/340/foam,roller,muscle,exercise?lock=22",
-  "https://loremflickr.com/240/340/resistance,band,stretching,athlete?lock=23",
-  "https://loremflickr.com/240/340/heat,therapy,warm,muscle?lock=24",
-  "https://loremflickr.com/240/340/cbd,oil,cream,recovery?lock=25",
-  "https://loremflickr.com/240/340/kinesiology,tape,physiotherapy?lock=26",
-  "https://loremflickr.com/240/340/soap,mat,cleaning,gym?lock=27",
+  "https://loremflickr.com/480/640/nasal,strip,sport?lock=60",
+  "https://loremflickr.com/480/640/soap,natural,organic?lock=61",
+  "https://loremflickr.com/480/640/tape,sport,finger?lock=62",
+  "https://loremflickr.com/480/640/cream,cbd,recovery?lock=63",
+  "https://loremflickr.com/480/640/massage,therapy,muscle?lock=64",
+  "https://loremflickr.com/480/640/physiotherapy,recovery?lock=65",
+  "https://loremflickr.com/480/640/foam,roller,fitness?lock=66",
+  "https://loremflickr.com/480/640/kinesio,tape,athlete?lock=67",
 ];
 
 function getCardStyle(offset: number): {

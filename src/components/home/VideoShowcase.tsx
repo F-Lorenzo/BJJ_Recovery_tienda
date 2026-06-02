@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export function VideoShowcase() {
@@ -7,14 +8,25 @@ export function VideoShowcase() {
       className="relative overflow-hidden"
       style={{ minHeight: "100dvh" }}
     >
-      {/* Video */}
+      {/* Full-cover background image — sports physiotherapy / recovery */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://loremflickr.com/1920/1080/physiotherapy,sports,recovery,massage?lock=200"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Video — plays over static image */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        poster="https://loremflickr.com/1920/1080/massage,therapy,muscle?lock=3"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         aria-hidden="true"
       >
         {/* Replace with real product demo video */}
@@ -24,12 +36,12 @@ export function VideoShowcase() {
         />
       </video>
 
-      {/* Overlays — asymmetric gradient */}
+      {/* Asymmetric gradient — darker on left where text lives */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(105deg, oklch(28% 0.055 195 / 0.88) 0%, oklch(28% 0.055 195 / 0.6) 45%, transparent 80%)",
+            "linear-gradient(105deg, oklch(28% 0.055 195 / 0.92) 0%, oklch(28% 0.055 195 / 0.7) 45%, oklch(28% 0.055 195 / 0.2) 80%)",
         }}
         aria-hidden="true"
       />
@@ -54,7 +66,7 @@ export function VideoShowcase() {
             La recuperación es parte del entrenamiento
           </h2>
           <p
-            className="font-body text-white/60 leading-relaxed mb-8"
+            className="font-body text-white/65 leading-relaxed mb-8"
             style={{
               fontSize: "clamp(1rem, 1.2vw + 0.5rem, 1.2rem)",
               maxWidth: "440px",
@@ -62,14 +74,11 @@ export function VideoShowcase() {
           >
             Los mejores deportistas lo saben: el tiempo fuera del tatami es tan
             importante como el tiempo dentro. Tu cuerpo necesita recuperarse para
-            que puedas rendir al máximo.
+            rendir al máximo.
           </p>
 
           <Link href="/productos">
-            <Button
-              size="lg"
-              className="bg-sand! text-brand! hover:bg-white! font-extrabold"
-            >
+            <Button size="lg" className="bg-sand! text-brand! hover:bg-white! font-extrabold">
               Ver todos los productos
             </Button>
           </Link>
