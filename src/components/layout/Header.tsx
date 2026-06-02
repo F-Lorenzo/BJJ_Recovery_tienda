@@ -7,6 +7,7 @@ import { useCartStore } from "@/lib/store/cartStore";
 import { cn } from "@/lib/utils/cn";
 
 const NAV_LINKS = [
+  { label: "Inicio", href: "/" },
   { label: "Productos", href: "/productos" },
   { label: "Contacto", href: "/contacto" },
 ];
@@ -52,7 +53,7 @@ export function Header() {
                 aria-current={pathname === link.href ? "page" : undefined}
                 className={cn(
                   "px-4 py-2 rounded-lg font-body text-sm font-semibold transition-all duration-200",
-                  pathname.startsWith(link.href)
+                  (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href))
                     ? "text-brand bg-brand/8"
                     : "text-ink hover:text-brand hover:bg-brand/5"
                 )}
