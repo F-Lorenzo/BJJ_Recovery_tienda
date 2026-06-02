@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/lib/store/cartStore";
 import { cn } from "@/lib/utils/cn";
@@ -16,7 +17,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-sage/10">
-      {/* Skip to content — keyboard accessibility */}
+      {/* Skip to content */}
       <a href="#main-content" className="skip-link">
         Ir al contenido principal
       </a>
@@ -26,13 +27,24 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display font-extrabold text-xl text-brand tracking-tight hover:text-brand/80 transition-colors duration-200"
+            className="flex items-center flex-shrink-0"
+            aria-label="BJJ Recovery - Inicio"
           >
-            BJJ Recovery
+            <Image
+              src="/logo.jpeg"
+              alt="BJJ Recovery"
+              height={40}
+              width={120}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+          <nav
+            className="hidden md:flex items-center gap-1"
+            aria-label="Navegación principal"
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}

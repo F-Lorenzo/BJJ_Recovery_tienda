@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -7,9 +8,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <p className="font-display font-extrabold text-xl mb-3">
-              BJJ Recovery
-            </p>
+            <Link href="/" aria-label="BJJ Recovery - Inicio" className="inline-block mb-4">
+              <Image
+                src="/logo.jpeg"
+                alt="BJJ Recovery"
+                height={44}
+                width={130}
+                className="h-11 w-auto object-contain brightness-0 invert"
+              />
+            </Link>
             <p className="text-sm text-white/70 leading-relaxed">
               Productos de recuperación muscular por y para deportistas de artes
               marciales.
