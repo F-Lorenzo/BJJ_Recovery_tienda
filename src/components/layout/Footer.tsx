@@ -12,9 +12,9 @@ export function Footer() {
               <Image
                 src="/logo.jpeg"
                 alt="BJJ Recovery"
-                height={44}
-                width={130}
-                className="h-11 w-auto object-contain brightness-0 invert"
+                height={80}
+                width={240}
+                className="h-16 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-sm text-white/70 leading-relaxed">
