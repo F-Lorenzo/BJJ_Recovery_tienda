@@ -2,7 +2,6 @@
 
 import { useRef, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/Button";
@@ -33,35 +32,17 @@ export function HeroCinematic() {
       className="relative overflow-hidden bg-brand grain"
       style={{ minHeight: "100dvh" }}
     >
-      {/* Background image — full cover, massage / muscle recovery */}
-      <div className="absolute inset-0">
-        <Image
-          src="https://loremflickr.com/1920/1080/massage,muscle,recovery,therapy?lock=100"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          style={{ opacity: 0.45 }}
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Video overlay — plays on top of static image when available */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ opacity: 0.45 }}
+      {/* Background — espalda con ventosas (cupping therapy) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('https://loremflickr.com/1920/1080/cupping,back,massage?lock=301')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.55,
+        }}
         aria-hidden="true"
-      >
-        <source
-          src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-          type="video/mp4"
-        />
-      </video>
+      />
 
       {/* Gradient overlay — left-heavy so text stays readable */}
       <div
