@@ -8,7 +8,7 @@ export function Hero() {
       {/* Background image — dark overlay */}
       <div className="absolute inset-0">
         <Image
-          src="https://picsum.photos/seed/bjj-recovery-hero/1920/1080"
+          src="https://loremflickr.com/1920/1080/massage,sports,recovery,athlete?lock=2"
           alt=""
           fill
           className="object-cover opacity-20"

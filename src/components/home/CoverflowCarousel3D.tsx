@@ -12,15 +12,16 @@ type ProductItem = Pick<
   "id" | "slug" | "name" | "image" | "price" | "regularPrice" | "shortDescription"
 >;
 
+// LoremFlickr: keyword-matched real photos for each product type
 const PLACEHOLDER_SEEDS = [
-  "pistol-massage-gun",
-  "neck-massager-electric",
-  "foam-roller-black",
-  "elastic-resistance-bands",
-  "heat-pad-seeds",
-  "cbd-recovery-oil",
-  "kinesio-tape-blue",
-  "mat-cleaner-bottle",
+  "https://loremflickr.com/240/340/massage,gun,percussion,therapy?lock=20",
+  "https://loremflickr.com/240/340/neck,massage,physiotherapy?lock=21",
+  "https://loremflickr.com/240/340/foam,roller,muscle,exercise?lock=22",
+  "https://loremflickr.com/240/340/resistance,band,stretching,athlete?lock=23",
+  "https://loremflickr.com/240/340/heat,therapy,warm,muscle?lock=24",
+  "https://loremflickr.com/240/340/cbd,oil,cream,recovery?lock=25",
+  "https://loremflickr.com/240/340/kinesiology,tape,physiotherapy?lock=26",
+  "https://loremflickr.com/240/340/soap,mat,cleaning,gym?lock=27",
 ];
 
 function getCardStyle(offset: number): {
@@ -133,7 +134,7 @@ export function CoverflowCarousel3D({ products }: { products: ProductItem[] }) {
                   <Image
                     src={
                       product.image?.sourceUrl ||
-                      `https://picsum.photos/seed/${PLACEHOLDER_SEEDS[i % PLACEHOLDER_SEEDS.length]}/240/340`
+                      PLACEHOLDER_SEEDS[i % PLACEHOLDER_SEEDS.length]
                     }
                     alt={isCenter ? (product.image?.altText || product.name) : ""}
                     fill

@@ -53,7 +53,7 @@ export function HeroCinematic() {
         muted
         loop
         playsInline
-        poster="https://picsum.photos/seed/bjj-grappling-sport/1920/1080"
+        poster="https://loremflickr.com/1920/1080/massage,recovery,sports?lock=1"
         className="absolute inset-0 w-full h-full object-cover opacity-25"
         aria-hidden="true"
       >

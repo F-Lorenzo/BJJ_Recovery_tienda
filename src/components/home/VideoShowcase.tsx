@@ -13,7 +13,7 @@ export function VideoShowcase() {
         muted
         loop
         playsInline
-        poster="https://picsum.photos/seed/bjj-recovery-session/1920/1080"
+        poster="https://loremflickr.com/1920/1080/massage,therapy,muscle?lock=3"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
       >

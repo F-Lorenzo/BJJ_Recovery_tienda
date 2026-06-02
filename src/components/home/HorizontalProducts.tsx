@@ -16,15 +16,16 @@ type ProductItem = Pick<
   "id" | "slug" | "name" | "image" | "price" | "regularPrice" | "productCategories"
 >;
 
+// LoremFlickr URLs: keyword-matched real photos, lock= ensures consistency
 const PLACEHOLDER_SEEDS = [
-  "bjj-massager-device",
-  "foam-roller-sport",
-  "resistance-bands-athlete",
-  "bjj-tape-fingers",
-  "cbd-cream-muscle",
-  "heat-pad-recovery",
-  "kinesio-tape-sport",
-  "mat-soap-tatami",
+  "https://loremflickr.com/340/460/massage,gun,percussion?lock=10",
+  "https://loremflickr.com/340/460/foam,roller,exercise?lock=11",
+  "https://loremflickr.com/340/460/resistance,band,stretching?lock=12",
+  "https://loremflickr.com/340/460/kinesiology,tape,sport?lock=13",
+  "https://loremflickr.com/340/460/cream,lotion,muscle,recovery?lock=14",
+  "https://loremflickr.com/340/460/heat,therapy,muscle?lock=15",
+  "https://loremflickr.com/340/460/physiotherapy,tape,sport?lock=16",
+  "https://loremflickr.com/340/460/soap,foam,cleaning?lock=17",
 ];
 
 export function HorizontalProducts({ products }: { products: ProductItem[] }) {
@@ -142,9 +143,8 @@ function ProductCard({
   product: ProductItem;
   seed: string;
 }) {
-  const imageSrc =
-    product.image?.sourceUrl ||
-    `https://picsum.photos/seed/${seed}/340/460`;
+  // seed is already a full LoremFlickr URL when no real image exists
+  const imageSrc = product.image?.sourceUrl || seed;
 
   return (
     <Link
