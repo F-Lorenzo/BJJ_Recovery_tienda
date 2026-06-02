@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProductCard } from "@/components/product/ProductCard";
 import { formatPrice } from "@/lib/utils/formatPrice";
-import { useCartStore } from "@/lib/store/cartStore";
+import { useCart } from "@/lib/hooks/useCart";
 import type { Product, ProductVariation } from "@/types/product";
 
 interface Props { product: Product }
@@ -29,16 +29,20 @@ export function ProductPageClient({ product }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("descripcion");
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
-  const openCart = useCartStore((s) => s.openCart);
+  const { addToCart, addingToCart } = useCart();
 
   const allImages = [product.image, ...(product.galleryImages?.nodes ?? [])].filter(Boolean);
   const displayPrice = selectedVariation?.price ?? product.price;
   const displayRegular = selectedVariation?.regularPrice ?? product.regularPrice;
   const isOnSale = displayPrice && displayRegular && displayPrice !== displayRegular;
 
-  function handleAddToCart() {
+  async function handleAddToCart() {
+    await addToCart(
+      product.databaseId,
+      qty,
+      selectedVariation?.databaseId
+    );
     setAdded(true);
-    openCart();
     setTimeout(() => setAdded(false), 2000);
   }
 
@@ -219,7 +223,7 @@ export function ProductPageClient({ product }: Props) {
               </div>
 
               <motion.div className="flex-1" whileTap={{ scale: 0.97 }}>
-                <Button onClick={handleAddToCart} size="lg" className="w-full gap-2">
+                <Button onClick={handleAddToCart} size="lg" className="w-full gap-2" disabled={addingToCart}>
                   <AnimatePresence mode="wait" initial={false}>
                     {added ? (
                       <motion.span
